@@ -8,9 +8,9 @@ namespace BlackjackConsole {
 
     public enum RoyalType {
 
-        Jack,
-        Queen,
-        King
+        Jack    = 'J',
+        Queen   = 'Q',
+        King    = 'K'
 
     }
 
