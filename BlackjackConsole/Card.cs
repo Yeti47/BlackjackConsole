@@ -12,6 +12,8 @@ namespace BlackjackConsole {
 
         public abstract int Value { get;  }
 
+        public string SuitAsString => char.ConvertFromUtf32((int)Suit);
+
         public Card(CardSuit suit) {
 
             Suit = suit;

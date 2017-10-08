@@ -8,10 +8,10 @@ namespace BlackjackConsole {
 
     public enum CardSuit {
 
-        Heart,
-        Spade,
-        Club,
-        Diamond
+        Heart   = 0x2665,
+        Spade   = 0x2660,
+        Club    = 0x2663,
+        Diamond = 0x2666
 
     }
 
