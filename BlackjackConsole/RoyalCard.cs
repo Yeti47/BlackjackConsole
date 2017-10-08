@@ -20,6 +20,8 @@ namespace BlackjackConsole {
 
         public override int Value => ROYAL_VALUE;
 
+        public string RoyalString => "" + (char)RoyalType;
+
         #endregion
 
         #region Constructors
@@ -29,6 +31,12 @@ namespace BlackjackConsole {
             RoyalType = royalType;
 
         }
+
+        #endregion
+
+        #region Methods
+
+        public override string ToString() => RoyalString + " " + SuitAsString;
 
         #endregion
 

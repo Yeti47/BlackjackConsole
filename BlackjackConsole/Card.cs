@@ -20,6 +20,8 @@ namespace BlackjackConsole {
 
         }
 
+        public override string ToString() => Value + " " + SuitAsString;
+
     }
 
 }
