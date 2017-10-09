@@ -53,8 +53,7 @@ namespace BlackjackConsole {
                 _cards.Push(new RoyalCard(suit, RoyalType.Jack));
                 _cards.Push(new RoyalCard(suit, RoyalType.Queen));
                 _cards.Push(new RoyalCard(suit, RoyalType.King));
-
-                _cards.Push(new Ace(suit));
+                _cards.Push(new RoyalCard(suit, RoyalType.Ace));
 
             }
 

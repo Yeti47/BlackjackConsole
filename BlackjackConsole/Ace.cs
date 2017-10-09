@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackjackConsole {
 
+    [Obsolete("Ace is now considered a RoyalCard with the RoyalType Ace.")]
     public class Ace : Card {
 
         private const int ACE_VALUE = 11;

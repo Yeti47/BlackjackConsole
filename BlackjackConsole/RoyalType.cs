@@ -10,7 +10,8 @@ namespace BlackjackConsole {
 
         Jack    = 'J',
         Queen   = 'Q',
-        King    = 'K'
+        King    = 'K',
+        Ace     = 'A'
 
     }
 

@@ -8,9 +8,11 @@ namespace BlackjackConsole {
 
     public class RoyalCard : Card {
 
-        #region Fields
+        #region Constants
 
-        private const int ROYAL_VALUE = 10;
+        public const int ROYAL_VALUE = 10;
+        public const int ACE_MIN_VALUE = 1;
+        public const int ACE_MAX_VALUE = 11;
 
         #endregion
 
@@ -18,9 +20,11 @@ namespace BlackjackConsole {
 
         public RoyalType RoyalType { get; }
 
-        public override int Value => ROYAL_VALUE;
+        public override int Value => IsAce ? ACE_MAX_VALUE : ROYAL_VALUE;
 
         public string RoyalString => "" + (char)RoyalType;
+
+        public bool IsAce => RoyalType == RoyalType.Ace;
 
         #endregion
 

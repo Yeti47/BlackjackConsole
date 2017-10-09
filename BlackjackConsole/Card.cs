@@ -8,11 +8,18 @@ namespace BlackjackConsole {
 
     public abstract class Card {
 
-        public CardSuit Suit { get; }
+        #region Properties
 
         public abstract int Value { get;  }
 
+        public CardSuit Suit { get; }
         public string SuitAsString => char.ConvertFromUtf32((int)Suit);
+
+        public bool IsHidden { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public Card(CardSuit suit) {
 
@@ -20,7 +27,14 @@ namespace BlackjackConsole {
 
         }
 
+        #endregion
+
+        #region Methods
+
         public override string ToString() => Value + " " + SuitAsString;
+
+        #endregion
+
 
     }
 

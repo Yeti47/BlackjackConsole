@@ -22,15 +22,13 @@ namespace BlackjackConsole {
 
                 int sum = _cards.Sum(c => c.Value);
 
-                IEnumerable<Ace> aces = _cards.OfType<Ace>();
-
-                foreach(Ace ace in aces) {
+                foreach(RoyalCard ace in _cards.OfType<RoyalCard>().Where(c => c.IsAce)) {
 
                     if (sum <= MAX_VALUE)
                         break;
 
                     sum -= ace.Value;
-                    sum += ace.MinValue;
+                    sum += RoyalCard.ACE_MIN_VALUE;
 
                 }
                 

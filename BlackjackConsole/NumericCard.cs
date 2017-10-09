@@ -17,7 +17,7 @@ namespace BlackjackConsole {
 
         #region Fields
 
-        private readonly int _value = 2;
+        private readonly int _value;
 
         #endregion
 
