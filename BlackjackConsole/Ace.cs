@@ -14,7 +14,7 @@ namespace BlackjackConsole {
 
         public override int Value => ACE_VALUE;
 
-        public int MinValue => ACE_MIN_VALUE;
+        public override int MinValue => ACE_MIN_VALUE;
 
         public Ace(CardSuit suit) : base(suit) {
 
