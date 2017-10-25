@@ -11,6 +11,7 @@ namespace BlackjackConsole {
         #region Properties
 
         public abstract int Value { get;  }
+        public abstract int MinValue { get; }
 
         public CardSuit Suit { get; }
         public string SuitAsString => char.ConvertFromUtf32((int)Suit);

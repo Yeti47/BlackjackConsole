@@ -24,6 +24,7 @@ namespace BlackjackConsole {
         #region Properties
 
         public override int Value => _value;
+        public override int MinValue => _value;
 
         #endregion
 

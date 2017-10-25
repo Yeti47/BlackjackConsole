@@ -10,7 +10,7 @@ namespace BlackjackConsole {
 
             string c = char.ConvertFromUtf32(0x2660);
 
-            Console.WriteLine(c);
+            Console.WriteLine("This is a test to see if everything is still fine after this whole c++ package disaster!");
             Console.ReadLine();
 
         }

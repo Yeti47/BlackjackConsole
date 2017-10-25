@@ -21,8 +21,18 @@ namespace BlackjackConsole {
         public RoyalType RoyalType { get; }
 
         public override int Value => IsAce ? ACE_MAX_VALUE : ROYAL_VALUE;
+        public override int MinValue => IsAce ? ACE_MIN_VALUE : ROYAL_VALUE;
 
-        public string RoyalString => "" + (char)RoyalType;
+        public string RoyalString {
+
+            get {
+
+                char c = (char)RoyalType;
+                return c.ToString();
+
+            }
+
+        }
 
         public bool IsAce => RoyalType == RoyalType.Ace;
 
