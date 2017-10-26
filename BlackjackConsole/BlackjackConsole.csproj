@@ -51,6 +51,7 @@
     <Compile Include="CardSuit.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Hand.cs" />
+    <Compile Include="MathUtility.cs" />
     <Compile Include="NumericCard.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

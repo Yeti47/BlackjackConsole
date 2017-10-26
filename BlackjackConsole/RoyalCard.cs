@@ -25,6 +25,17 @@ namespace BlackjackConsole {
 
         public bool IsAce => RoyalType == RoyalType.Ace;
 
+        public override string Rank {
+
+            get {
+
+                char c = (char)RoyalType;
+                return c.ToString();
+
+            }
+
+        }
+
         #endregion
 
         #region Constructors
@@ -39,7 +50,7 @@ namespace BlackjackConsole {
 
         #region Methods
 
-        public override string ToString() => $"{(char)RoyalType} of {SuitAsString}";
+        
 
         #endregion
 
