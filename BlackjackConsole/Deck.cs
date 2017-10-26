@@ -16,18 +16,44 @@ namespace BlackjackConsole {
 
         #region Properties
 
+        /// <summary>
+        /// The number of <see cref="Card"/>s in this Deck.
+        /// </summary>
         public int NumberRemainingCards => _cards.Count;
+
+        /// <summary>
+        /// Whether or not this <see cref="Deck"/> is currently empty, i. e. there are no <see cref="Card"/>s in this Deck.
+        /// </summary>
+        public bool IsEmpty => _cards.Count <= 0;
+
+        /// <summary>
+        /// An enumeration of all the <see cref="Card"/>s in this Deck.
+        /// </summary>
+        public IEnumerable<Card> Cards => _cards;
 
         #endregion
 
         #region Constructors
 
-        public Deck(bool doShuffle = false) {
+        /// <summary>
+        /// Creates a new <see cref="Deck"/>. If <paramref name="isEmpty"/> is set to true, no cards will be added to this Deck. 
+        /// If false, the Deck will be populated with a standard set of 52 <see cref="Card"/>s.
+        /// </summary>
+        /// <param name="isEmpty">Whether or not the new Deck should be empty.</param>
+        public Deck(bool isEmpty = false) {
 
-            Initialize();
+            if(!isEmpty)
+                Initialize();
 
-            if (doShuffle)
-                Shuffle();
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Deck"/> and initializes it with the given collection of <see cref="Card"/>s.
+        /// </summary>
+        /// <param name="cards">The <see cref="Card"/>s to use in this Deck.</param>
+        public Deck(IEnumerable<Card> cards) {
+
+            Push(cards);
 
         }
 
@@ -35,6 +61,9 @@ namespace BlackjackConsole {
 
         #region Methods
 
+        /// <summary>
+        /// Populates this <see cref="Deck"/> with a standard set of 52 <see cref="Card"/>s.
+        /// </summary>
         public void Initialize() {
 
             if (_cards == null)
@@ -59,6 +88,9 @@ namespace BlackjackConsole {
 
         }
 
+        /// <summary>
+        /// Shuffles this <see cref="Deck"/> using a simple implementation of the Fisher-Yates shuffling algorithm.
+        /// </summary>
         public void Shuffle() {
 
             if (_cards == null)
@@ -84,6 +116,10 @@ namespace BlackjackConsole {
 
         }
 
+        /// <summary>
+        /// Removes the <see cref="Card"/> on top of this <see cref="Deck"/> and returns it.
+        /// </summary>
+        /// <returns>The Card on top of this Deck.</returns>
         public Card Draw() {
 
             Card card = null;
@@ -94,6 +130,43 @@ namespace BlackjackConsole {
             return card;
 
         }
+
+        /// <summary>
+        /// Puts the given <see cref="Card"/> on top of this <see cref="Deck"/>. If null is passed, nothing will be added.
+        /// </summary>
+        /// <param name="card">The card to put on top of this Deck.</param>
+        public void Push(Card card) {
+
+            if (card == null)
+                return;
+
+            _cards.Push(card);
+            
+        }
+
+        /// <summary>
+        /// Puts all of the <see cref="Card"/>s in the given enumeration on top of this <see cref="Deck"/>. If null is passed, nothing will be added. #
+        /// All null references in the enumeration will be skipped.
+        /// </summary>
+        /// <param name="cards">An enumeration of Cards to put on top of this Deck.</param>
+        public void Push(IEnumerable<Card> cards) {
+
+            if (cards == null)
+                return;
+
+            foreach (Card card in cards) {
+
+                if (card != null)
+                    _cards.Push(card);
+
+            }
+                        
+        }
+
+        /// <summary>
+        /// Removes all <see cref="Card"/>s from this <see cref="Deck"/>.
+        /// </summary>
+        public void Clear() => _cards?.Clear();
 
         #endregion
 

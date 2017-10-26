@@ -14,6 +14,11 @@ namespace BlackjackConsole {
 
         #endregion
 
+        #region Events
+
+
+        #endregion
+
         #region Fields
 
         private List<Card> _cards = new List<Card>();
@@ -26,7 +31,7 @@ namespace BlackjackConsole {
 
         public IEnumerable<Card> VisibleCards => _cards.Where(c => !c.IsHidden);
 
-        public int NumberCards => _cards.Count;
+        public int CardsCount => _cards.Count;
 
         public int Value {
 

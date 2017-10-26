@@ -32,6 +32,9 @@ namespace BlackjackConsole {
 
         public NumericCard(CardSuit suit, int value) : base(suit){
 
+            if (value < MIN_NUMBER || value > MAX_NUMBER)
+                throw new ArgumentOutOfRangeException("value", $"The value of the card must not be less than {MIN_NUMBER} or greater than {MAX_NUMBER}.");
+
             _value = value;
 
         }

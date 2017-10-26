@@ -32,7 +32,7 @@ namespace BlackjackConsole {
 
         #region Methods
 
-        public override string ToString() => Value + " " + SuitAsString;
+        public override string ToString() => $"{Value} of {SuitAsString}";
 
         #endregion
 

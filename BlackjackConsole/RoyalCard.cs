@@ -23,17 +23,6 @@ namespace BlackjackConsole {
         public override int Value => IsAce ? ACE_MAX_VALUE : ROYAL_VALUE;
         public override int MinValue => IsAce ? ACE_MIN_VALUE : ROYAL_VALUE;
 
-        public string RoyalString {
-
-            get {
-
-                char c = (char)RoyalType;
-                return c.ToString();
-
-            }
-
-        }
-
         public bool IsAce => RoyalType == RoyalType.Ace;
 
         #endregion
@@ -50,7 +39,7 @@ namespace BlackjackConsole {
 
         #region Methods
 
-        public override string ToString() => RoyalString + " " + SuitAsString;
+        public override string ToString() => $"{(char)RoyalType} of {SuitAsString}";
 
         #endregion
 
