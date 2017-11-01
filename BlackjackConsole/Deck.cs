@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackjackConsole {
 
-    public class Deck {
+    public class Deck : IAsciiArt {
 
         #region Fields
 
@@ -167,6 +167,38 @@ namespace BlackjackConsole {
         /// Removes all <see cref="Card"/>s from this <see cref="Deck"/>.
         /// </summary>
         public void Clear() => _cards?.Clear();
+
+        public string ToAsciiArt() {
+
+            string top    = "┌---------┐";
+            string middle = ":.........:";
+            string bottom = "└---------┘";
+
+            if(NumberRemainingCards > 1) {
+
+                top    = "┌─────────╖";
+                middle = "│xxxxxxxxx║";
+                bottom = "╘═════════╝";
+
+            }
+            else if(NumberRemainingCards > 0) {
+
+                top    = "┌─────────┐";
+                middle = "│xxxxxxxxx│";
+                bottom = "└─────────┘";
+
+            }
+
+            string ascii = top + "\n";
+
+            for (int i = 0; i < 9; i++)
+                ascii += middle + "\n";
+
+            ascii += bottom + "\n";
+
+            return ascii;
+
+        }
 
         #endregion
 

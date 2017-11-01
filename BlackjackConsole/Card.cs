@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackjackConsole {
 
-    public abstract class Card {
+    public abstract class Card : IAsciiArt {
 
         #region Properties
 

@@ -59,6 +59,8 @@ namespace BlackjackConsole {
         /// </summary>
         public bool IsBlackjack => _cards.Count == 2 && Value == MAX_VALUE;
 
+        public bool IsBust => Value > MAX_VALUE;
+
         #endregion
 
         #region Constructors
