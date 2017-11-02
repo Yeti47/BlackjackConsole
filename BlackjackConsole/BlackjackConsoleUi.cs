@@ -14,11 +14,15 @@ namespace BlackjackConsole {
         public const string GAME_TITLE = "Poor Man's Blackjack";
 
         private const int BET_STEP = 10;
-        private const int BET_STEP_SMALL = 5;
+        private const int BET_STEP_SMALL = 1;
         private const int MAX_NAME_LENGTH = 12;
 
         public const int WINDOW_WIDTH = 100;
         public const int WINDOW_HEIGHT = 30;
+
+        private const int START_BALANCE = 500;
+        private const int MIN_BET = 1;
+        private const int MAX_BET = 500;
 
         #endregion
 
@@ -39,7 +43,7 @@ namespace BlackjackConsole {
             Console.OutputEncoding = Encoding.Unicode;
             Console.Title = GAME_TITLE;
 
-            _blackjack = new Blackjack();
+            _blackjack = new Blackjack(MIN_BET, MAX_BET);
 
             _blackjack.PlayerWon += OnPlayerWon;
             _blackjack.PlayerLost += OnPlayerLost;
@@ -61,9 +65,10 @@ namespace BlackjackConsole {
             Console.CursorVisible = false;
 
             Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
 
-            _blackjack.StartGame(1000);
+            _blackjack.StartGame(START_BALANCE);
 
             bool hasCanceled = false;
 
@@ -102,7 +107,14 @@ namespace BlackjackConsole {
                         }
                         // Continue
                         else if(_blackjack.IsGameOver) {
-                            _blackjack.StartGame(1000);
+
+                            // Clear dealer's win/lose/push message
+                            ClearArea(0, 1, 16, 2);
+
+                            // Clear players's win/lose/push message
+                            ClearArea(0, 19, 16, 2);
+
+                            _blackjack.StartGame(START_BALANCE);
                             DrawGui();
                         }
                         
@@ -194,7 +206,7 @@ namespace BlackjackConsole {
             Console.WriteLine("► You lose!");
 
             if (_blackjack.IsGameOver)
-                Console.WriteLine("► GAME OVER!");
+                Console.WriteLine(" ► GAME OVER!");
 
             Console.ForegroundColor = originalColor;
 
@@ -334,15 +346,19 @@ namespace BlackjackConsole {
             ClearArea(27, 1, 70, 11);
 
             // Clear players's hand area
-            ClearArea(27, 15, 70, 11);
+            ClearArea(27, 16, 70, 11);
 
             DrawHandCards(_blackjack.Dealer.Hand, 27, 1);
-            DrawHandCards(_blackjack.Player.Hand, 27, 15);
+            DrawHandCards(_blackjack.Player.Hand, 27, 16);
 
+            // Write table rules (min bet, max bet, dealer stand value)
             Console.SetCursorPosition(34, 13);
             ConsoleColor origColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($"Dealer must stand on {Dealer.STAND_VALUE} and draw to {Dealer.STAND_VALUE - 1}");
+            Console.SetCursorPosition(38, 14);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write($"min. bet: ${MIN_BET} | max. bet: ${MAX_BET}");
             Console.ForegroundColor = origColor;
 
             Console.SetCursorPosition(0, 0);
