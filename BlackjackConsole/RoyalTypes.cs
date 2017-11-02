@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackjackConsole {
 
-    public enum RoyalType {
+    public enum RoyalTypes {
 
         Jack    = 'J',
         Queen   = 'Q',

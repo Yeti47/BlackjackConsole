@@ -18,12 +18,12 @@ namespace BlackjackConsole {
 
         #region Properties
 
-        public RoyalType RoyalType { get; }
+        public RoyalTypes RoyalType { get; }
 
         public override int Value => IsAce ? ACE_MAX_VALUE : ROYAL_VALUE;
         public override int MinValue => IsAce ? ACE_MIN_VALUE : ROYAL_VALUE;
 
-        public bool IsAce => RoyalType == RoyalType.Ace;
+        public bool IsAce => RoyalType == RoyalTypes.Ace;
 
         public override string Rank {
 
@@ -40,7 +40,7 @@ namespace BlackjackConsole {
 
         #region Constructors
 
-        public RoyalCard(CardSuit suit, RoyalType royalType) : base(suit) {
+        public RoyalCard(CardSuits suit, RoyalTypes royalType) : base(suit) {
 
             RoyalType = royalType;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackjackConsole {
 
-    public enum CardSuit {
+    public enum CardSuits {
         // We're using the unicode code points for the card symbols as the values of the enum
         Heart   = 0x2665,
         Spade   = 0x2660,

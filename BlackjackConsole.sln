@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackjackConsole", "BlackjackConsole\BlackjackConsole.csproj", "{4D0975A5-31FC-4717-B19C-7B73D3705D22}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{D089CD65-310A-409C-8BF0-DD73A9C8FF9E}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\DevResources\Concepts\BlackjackConsole\BlackjackConsole.ncp = ..\..\DevResources\Concepts\BlackjackConsole\BlackjackConsole.ncp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

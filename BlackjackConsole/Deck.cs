@@ -71,7 +71,7 @@ namespace BlackjackConsole {
             else
                 _cards.Clear();
 
-            foreach(CardSuit suit in Enum.GetValues(typeof(CardSuit))) {
+            foreach(CardSuits suit in Enum.GetValues(typeof(CardSuits))) {
 
                 for(int i = NumericCard.MIN_NUMBER; i <= NumericCard.MAX_NUMBER; i++) {
 
@@ -79,10 +79,10 @@ namespace BlackjackConsole {
 
                 }
 
-                _cards.Push(new RoyalCard(suit, RoyalType.Jack));
-                _cards.Push(new RoyalCard(suit, RoyalType.Queen));
-                _cards.Push(new RoyalCard(suit, RoyalType.King));
-                _cards.Push(new RoyalCard(suit, RoyalType.Ace));
+                _cards.Push(new RoyalCard(suit, RoyalTypes.Jack));
+                _cards.Push(new RoyalCard(suit, RoyalTypes.Queen));
+                _cards.Push(new RoyalCard(suit, RoyalTypes.King));
+                _cards.Push(new RoyalCard(suit, RoyalTypes.Ace));
 
             }
 

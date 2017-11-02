@@ -13,7 +13,7 @@ namespace BlackjackConsole {
         public abstract int Value { get;  }
         public abstract int MinValue { get; }
 
-        public CardSuit Suit { get; }
+        public CardSuits Suit { get; }
         public string SuitAsString => char.ConvertFromUtf32((int)Suit);
 
         public virtual string Rank => Value.ToString();
@@ -24,7 +24,7 @@ namespace BlackjackConsole {
 
         #region Constructors
 
-        public Card(CardSuit suit) {
+        public Card(CardSuits suit) {
 
             Suit = suit;
 
