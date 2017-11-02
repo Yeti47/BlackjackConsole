@@ -7,7 +7,7 @@
       <Entity type="Class">
         <Name>Card</Name>
         <Access>Public</Access>
-        <Location left="288" top="172" />
+        <Location left="288" top="189" />
         <Size width="207" height="238" />
         <Collapsed>False</Collapsed>
         <Member type="Property">public abstract int Value { get; }</Member>
@@ -23,7 +23,7 @@
       <Entity type="Class">
         <Name>NumericCard</Name>
         <Access>Public</Access>
-        <Location left="47" top="520" />
+        <Location left="47" top="537" />
         <Size width="173" height="222" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const int MIN_NUMBER = 2</Member>
@@ -36,7 +36,7 @@
       <Entity type="Class">
         <Name>RoyalCard</Name>
         <Access>Public</Access>
-        <Location left="471" top="520" />
+        <Location left="471" top="537" />
         <Size width="223" height="222" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const int ROYAL_VALUE = 10</Member>
@@ -52,7 +52,7 @@
       <Entity type="Enum">
         <Name>CardSuit</Name>
         <Access>Public</Access>
-        <Location left="47" top="187" />
+        <Location left="47" top="204" />
         <Size width="162" height="137" />
         <Collapsed>False</Collapsed>
         <Value>Heart</Value>
@@ -63,7 +63,7 @@
       <Entity type="Enum">
         <Name>RoyalType</Name>
         <Access>Public</Access>
-        <Location left="266" top="579" />
+        <Location left="266" top="596" />
         <Size width="162" height="137" />
         <Collapsed>False</Collapsed>
         <Value>Jack</Value>
@@ -74,7 +74,7 @@
       <Entity type="Class">
         <Name>Deck</Name>
         <Access>Public</Access>
-        <Location left="771" top="172" />
+        <Location left="753" top="189" />
         <Size width="254" height="255" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private Stack&lt;Card&gt; _cards</Member>
@@ -91,7 +91,7 @@
       <Entity type="Interface">
         <Name>IAsciiArt</Name>
         <Access>Public</Access>
-        <Location left="535" top="10" />
+        <Location left="535" top="27" />
         <Size width="181" height="107" />
         <Collapsed>False</Collapsed>
         <Member type="Method">string ToAsciiArt()</Member>
@@ -99,7 +99,7 @@
       <Entity type="Class">
         <Name>Hand</Name>
         <Access>Public</Access>
-        <Location left="771" top="463" />
+        <Location left="753" top="480" />
         <Size width="300" height="291" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const int MAX_VALUE = 21</Member>
@@ -117,7 +117,7 @@
       <Entity type="Interface">
         <Name>IPlayer</Name>
         <Access>Public</Access>
-        <Location left="1253" top="649" />
+        <Location left="1160" top="675" />
         <Size width="162" height="95" />
         <Collapsed>False</Collapsed>
         <Member type="Property">Hand Hand { get; }</Member>
@@ -125,12 +125,12 @@
       <Entity type="Class">
         <Name>Player</Name>
         <Access>Public</Access>
-        <Location left="1102" top="355" />
-        <Size width="235" height="197" />
+        <Location left="1102" top="418" />
+        <Size width="208" height="181" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">public const double MAX_BALANCE = 99999.99</Member>
-        <Member type="Property">public double CurrentBet { get; set; }</Member>
-        <Member type="Property">public double Balance { get; set; }</Member>
+        <Member type="Field">public const int MAX_BALANCE = 9999</Member>
+        <Member type="Property">public int CurrentBet { get; set; }</Member>
+        <Member type="Property">public int Balance { get; set; }</Member>
         <Member type="Property">public string Name { get; set; }</Member>
         <Member type="Property">public Hand Hand { get; private set; }</Member>
         <Modifier>None</Modifier>
@@ -138,8 +138,8 @@
       <Entity type="Class">
         <Name>Dealer</Name>
         <Access>Public</Access>
-        <Location left="1447" top="355" />
-        <Size width="202" height="197" />
+        <Location left="1374" top="466" />
+        <Size width="202" height="181" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const int STAND_VALUE = 17</Member>
         <Member type="Field">private Blackjack _blackjack</Member>
@@ -151,13 +151,19 @@
       <Entity type="Class">
         <Name>Blackjack</Name>
         <Access>Public</Access>
-        <Location left="1102" top="10" />
-        <Size width="253" height="268" />
+        <Location left="1102" top="16" />
+        <Size width="253" height="315" />
         <Collapsed>False</Collapsed>
+        <Member type="Event">public event EventHandler PlayerWon</Member>
+        <Member type="Event">public event EventHandler PlayerLost</Member>
+        <Member type="Event">public event EventHandler Push</Member>
         <Member type="Property">public Deck Deck { get; }</Member>
         <Member type="Property">public Deck DiscardPile { get; }</Member>
         <Member type="Property">public Player Player { get; }</Member>
         <Member type="Property">public Dealer Dealer { get; }</Member>
+        <Member type="Property">public int MinBet { get; set; }</Member>
+        <Member type="Property">public int MaxBet { get; set; }</Member>
+        <Member type="Property">public GameStates GameState { get; private set; }</Member>
         <Member type="Method">public void StartGame(double initialBalance)</Member>
         <Member type="Method">public void Hit()</Member>
         <Member type="Method">public void Double()</Member>
@@ -167,11 +173,40 @@
       <Entity type="Class">
         <Name>BlackjackConsoleUi</Name>
         <Access>Public</Access>
-        <Location left="1447" top="26" />
-        <Size width="209" height="216" />
+        <Location left="1489" top="16" />
+        <Size width="353" height="383" />
         <Collapsed>False</Collapsed>
+        <Member type="Field">public const string GAME_TITLE = "Poor Man's Blackjack"</Member>
+        <Member type="Field">private const int BET_STEP = 10</Member>
+        <Member type="Field">private const int BET_STEP_SMALL = 1</Member>
+        <Member type="Field">private const int MAX_NAME_LENGTH = 12</Member>
+        <Member type="Field">public const int WINDOW_WIDTH = 100</Member>
+        <Member type="Field">public const int WINDOW_HEIGHT = 30</Member>
+        <Member type="Field">private const int START_BALANCE = 500</Member>
+        <Member type="Field">private const int MIN_BET = 1</Member>
+        <Member type="Field">private const int MAX_BET = 500</Member>
         <Member type="Field">private Blackjack _blackjack</Member>
+        <Member type="Method">public void Run()</Member>
+        <Member type="Method">public void DrawGui()</Member>
+        <Member type="Method">public void DrawAsciiArt(IAsciiArt asciiArt, int posX, int posY)</Member>
+        <Member type="Method">public void DrawHandCards(Hand hand, int posX, int posY)</Member>
+        <Member type="Method">public string NameEnter()</Member>
+        <Member type="Method">public void ForceSize(int width, int height)</Member>
+        <Member type="Method">public void ClearArea(int posX, int posY, int width, int height)</Member>
+        <Member type="Method">public void WriteNewLines(int count)</Member>
         <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>GameStates</Name>
+        <Access>Public</Access>
+        <Location left="858" top="16" />
+        <Size width="162" height="146" />
+        <Collapsed>False</Collapsed>
+        <Value>Initial</Value>
+        <Value>Started</Value>
+        <Value>PlayersTurn</Value>
+        <Value>DealersTurn</Value>
+        <Value>Ended</Value>
       </Entity>
     </Entities>
     <Relationships>
@@ -184,19 +219,19 @@
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="0" second="3">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="5" second="0">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="False">
           <X>531</X>
-          <Y>243</Y>
+          <Y>260</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
@@ -204,13 +239,11 @@
         <EndMultiplicity>0..*</EndMultiplicity>
       </Relationship>
       <Relationship type="Association" first="2" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>446</X>
-          <Y>545</Y>
+          <Y>562</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
@@ -222,17 +255,23 @@
       <Relationship type="Realization" first="5" second="6">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>808</X>
+          <Y>163</Y>
+        </BendPoint>
       </Relationship>
       <Relationship type="Association" first="7" second="0">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>746</X>
-          <Y>484</Y>
+          <X>728</X>
+          <Y>501</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>538</X>
-          <Y>341</Y>
+          <Y>358</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
@@ -244,52 +283,78 @@
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>1216</X>
-          <Y>580</Y>
+          <Y>627</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Realization" first="10" second="8">
         <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1352</X>
+          <Y>718</Y>
+        </BendPoint>
       </Relationship>
       <Relationship type="Association" first="12" second="11">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1422</X>
-          <Y>54</Y>
+          <X>1461</X>
+          <Y>50</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="8" second="7">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Composition</AssociationType>
       </Relationship>
       <Relationship type="Association" first="11" second="9">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <Direction>Bidirectional</Direction>
         <AssociationType>Composition</AssociationType>
       </Relationship>
       <Relationship type="Association" first="11" second="10">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1315</X>
-          <Y>304</Y>
+          <X>1310</X>
+          <Y>356</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1411</X>
+          <Y>441</Y>
         </BendPoint>
         <Direction>Bidirectional</Direction>
         <AssociationType>Composition</AssociationType>
       </Relationship>
       <Relationship type="Association" first="11" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1064</X>
+          <Y>268</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="11" second="13">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
-        <AssociationType>Composition</AssociationType>
+        <AssociationType>Association</AssociationType>
       </Relationship>
     </Relationships>
   </ProjectItem>
