@@ -59,6 +59,10 @@ namespace BlackjackConsole {
 
             ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
+            DrawTitleScreen();
+
+            Console.Read();
+
             string playerName = NameEnter();
             _blackjack.Player.Name = playerName;
 
@@ -266,11 +270,11 @@ namespace BlackjackConsole {
 
             Console.WriteLine("Dealer: " + _blackjack.Dealer.Hand.GetVisibleValue(1) + "     ");
 
-            DrawAsciiArt(_blackjack.Deck, 0, 3);
+            AsciiArtPrinter.Draw(_blackjack.Deck, 0, 3, Console.ForegroundColor);
             string deckLabel = "•Deck: " + _blackjack.Deck.NumberRemainingCards;
             Console.WriteLine(deckLabel.PadRight(11));
 
-            DrawAsciiArt(_blackjack.DiscardPile, 12, 3);
+            AsciiArtPrinter.Draw(_blackjack.DiscardPile, 12, 3, Console.ForegroundColor);
             string discardLabel = "•Discards: " + _blackjack.DiscardPile.NumberRemainingCards;
             Console.WriteLine(discardLabel.PadRight(20));
 
@@ -389,24 +393,8 @@ namespace BlackjackConsole {
 
             foreach(Card card in cards) {
 
-                DrawAsciiArt(card, posX, posY);
+                AsciiArtPrinter.Draw(card, posX, posY, Console.ForegroundColor);
                 posX += 7;
-
-            }
-
-        }
-
-        public void DrawAsciiArt(IAsciiArt asciiArt, int posX, int posY) {
-
-            if (asciiArt == null)
-                return;
-
-            string[] asciiRows = asciiArt.ToAsciiArt().Split(new char[] { '\n' });
-
-            for (int y = 0; y < asciiRows.Length; y++) {
-
-                Console.SetCursorPosition(posX, posY + y);
-                Console.Write(asciiRows[y]);
 
             }
 
@@ -417,6 +405,27 @@ namespace BlackjackConsole {
             for (int i = 0; i < count; i++)
                 Console.WriteLine();
 
+        }
+
+        private void DrawTitleScreen() {
+
+            Console.BackgroundColor = ConsoleColor.Black;
+
+            Console.Clear();
+
+            string titleArt = "\n" +
+                "  ____                    __  __             _     \n" +
+                " |  _ \\ ___   ___  _ __  |  \\/  | __ _ _ __ ( )___ \n" +
+                " | |_) / _ \\ / _ \\| '__| | |\\/| |/ _` | '_ \\|// __|\n" +
+                " |  __/ (_) | (_) | |    | |  | | (_| | | | | \\__ \\\n" +
+                " |_|__ \\___/ \\___/|_|_   |_|  |_|\\__,_|_| |_| |___/\n" +
+                " | __ )| | __ _  ___| | __(_) __ _  ___| | __      \n" +
+                " |  _ \\| |/ _` |/ __| |/ /| |/ _` |/ __| |/ /      \n" +
+                " | |_) | | (_| | (__|   < | | (_| | (__|   <       \n" +
+                " |____/|_|\\__,_|\\___|_|\\_\\/ |\\__,_|\\___|_|\\_\\      \n" +
+                "                        |__/                       \n";
+
+            AsciiArtPrinter.Draw(titleArt, 20, 4, ConsoleColor.Green);
         }
 
         #endregion

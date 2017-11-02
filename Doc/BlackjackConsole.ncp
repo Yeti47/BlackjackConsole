@@ -188,7 +188,6 @@
         <Member type="Field">private Blackjack _blackjack</Member>
         <Member type="Method">public void Run()</Member>
         <Member type="Method">public void DrawGui()</Member>
-        <Member type="Method">public void DrawAsciiArt(IAsciiArt asciiArt, int posX, int posY)</Member>
         <Member type="Method">public void DrawHandCards(Hand hand, int posX, int posY)</Member>
         <Member type="Method">public string NameEnter()</Member>
         <Member type="Method">public void ForceSize(int width, int height)</Member>
@@ -208,6 +207,16 @@
         <Value>DealersTurn</Value>
         <Value>Ended</Value>
       </Entity>
+      <Entity type="Class">
+        <Name>AsciiArtPrinter</Name>
+        <Access>Public</Access>
+        <Location left="19" top="16" />
+        <Size width="422" height="123" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static void Draw(IAsciiArt asciiArt, int posX, int posY, ConsoleColor color)</Member>
+        <Member type="Method">public static void Draw(string asciiArt, int posX, int posY, ConsoleColor color)</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Generalization" first="2" second="0">
@@ -225,8 +234,6 @@
         <AssociationType>Association</AssociationType>
       </Relationship>
       <Relationship type="Association" first="5" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -251,6 +258,10 @@
       <Relationship type="Realization" first="0" second="6">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>476</X>
+          <Y>164</Y>
+        </BendPoint>
       </Relationship>
       <Relationship type="Realization" first="5" second="6">
         <StartOrientation>Vertical</StartOrientation>
@@ -355,6 +366,16 @@
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="14" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>466</X>
+          <Y>52</Y>
+        </BendPoint>
       </Relationship>
     </Relationships>
   </ProjectItem>
