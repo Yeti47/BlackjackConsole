@@ -3,4 +3,4 @@ A console based implementation of the card game Black Jack. This repositiory is 
 
 ## Class diagram
 
-![uml classes](https://github.com/Yeti47/BlackjackConsole/blob/master/Doc/Blackjack.png)
+![uml classes](https://github.com/Yeti47/BlackjackConsole/blob/master/Doc/Blackjack.png?raw=true)
