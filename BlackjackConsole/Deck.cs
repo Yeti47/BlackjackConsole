@@ -191,7 +191,7 @@ namespace BlackjackConsole {
 
             string ascii = top + "\n";
 
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 7; i++)
                 ascii += middle + "\n";
 
             ascii += bottom + "\n";

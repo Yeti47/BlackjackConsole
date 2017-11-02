@@ -45,16 +45,14 @@ namespace BlackjackConsole {
                 asciiArt += AsciiFirstLine(11)
                          + "│.........│\n"
                          + "│.........│\n"
-                         + "│.........│\n"
                          +$"│....{SuitAsString}....│\n"
-                         + "│.........│\n"
                          + "│.........│\n"
                          + "│.........│\n"
                          + AsciiLastLine(11);
             }
             else {
 
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 7; i++)
                     asciiArt += "│xxxxxxxxx│\n";
 
             }

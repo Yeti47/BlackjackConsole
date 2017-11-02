@@ -57,16 +57,11 @@ namespace BlackjackConsole {
 
         public void Run() {
 
+            Console.CursorVisible = false;
+
             ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-            DrawTitleScreen();
-
-            Console.Read();
-
-            string playerName = NameEnter();
-            _blackjack.Player.Name = playerName;
-
-            Console.CursorVisible = false;
+            ShowTitleScreen();
 
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.White;
@@ -76,6 +71,7 @@ namespace BlackjackConsole {
 
             bool hasCanceled = false;
 
+            ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
             DrawGui();
 
             while (!hasCanceled) {
@@ -104,7 +100,7 @@ namespace BlackjackConsole {
                             ClearArea(0, 1, 16, 2);
 
                             // Clear players's win/lose/push message
-                            ClearArea(0, 19, 16, 2);
+                            ClearArea(0, 17, 16, 2);
 
                             _blackjack.Deal();
                             DrawGui();
@@ -116,7 +112,7 @@ namespace BlackjackConsole {
                             ClearArea(0, 1, 16, 2);
 
                             // Clear players's win/lose/push message
-                            ClearArea(0, 19, 16, 2);
+                            ClearArea(0, 17, 16, 2);
 
                             _blackjack.StartGame(START_BALANCE);
                             DrawGui();
@@ -189,7 +185,7 @@ namespace BlackjackConsole {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("► Push!");
 
-            Console.SetCursorPosition(1, 19);
+            Console.SetCursorPosition(1, 17);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("► Push!");
 
@@ -205,7 +201,7 @@ namespace BlackjackConsole {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("► Dealer wins!");
 
-            Console.SetCursorPosition(1, 19);
+            Console.SetCursorPosition(1, 17);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("► You lose!");
 
@@ -224,7 +220,7 @@ namespace BlackjackConsole {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("► Dealer loses!");
 
-            Console.SetCursorPosition(1, 19);
+            Console.SetCursorPosition(1, 17);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("► You win!");
 
@@ -287,7 +283,7 @@ namespace BlackjackConsole {
 
             string betLabel = "Bet: $" + _blackjack.Player.CurrentBet;
             Console.WriteLine(betLabel.PadRight(16));
-            WriteNewLines(1);
+            WriteNewLines(3);
 
             ConsoleColor originalColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -347,20 +343,20 @@ namespace BlackjackConsole {
             Console.Write(optionLine.PadRight(WINDOW_WIDTH));
 
             // Clear dealer's hand area
-            ClearArea(27, 1, 70, 11);
+            ClearArea(27, 1, 70, 9);
 
             // Clear players's hand area
-            ClearArea(27, 16, 70, 11);
+            ClearArea(27, 16, 70, 9);
 
             DrawHandCards(_blackjack.Dealer.Hand, 27, 1);
             DrawHandCards(_blackjack.Player.Hand, 27, 16);
 
             // Write table rules (min bet, max bet, dealer stand value)
-            Console.SetCursorPosition(34, 13);
+            Console.SetCursorPosition(34, 12);
             ConsoleColor origColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($"Dealer must stand on {Dealer.STAND_VALUE} and draw to {Dealer.STAND_VALUE - 1}");
-            Console.SetCursorPosition(38, 14);
+            Console.SetCursorPosition(38, 13);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write($"min. bet: ${MIN_BET} | max. bet: ${MAX_BET}");
             Console.ForegroundColor = origColor;
@@ -372,13 +368,12 @@ namespace BlackjackConsole {
 
         private string NameEnter() {
 
-            Console.WriteLine($"Please enter your name (max {MAX_NAME_LENGTH} characters):");
             string playerName = Console.ReadLine();
+
+            playerName = playerName.Trim();
 
             if (playerName.Length > MAX_NAME_LENGTH)
                 playerName = playerName.Substring(0, MAX_NAME_LENGTH);
-
-            Console.Clear();
 
             return playerName;
 
@@ -407,7 +402,7 @@ namespace BlackjackConsole {
 
         }
 
-        private void DrawTitleScreen() {
+        private void ShowTitleScreen() {
 
             Console.BackgroundColor = ConsoleColor.Black;
 
@@ -425,7 +420,41 @@ namespace BlackjackConsole {
                 " |____/|_|\\__,_|\\___|_|\\_\\/ |\\__,_|\\___|_|\\_\\      \n" +
                 "                        |__/                       \n";
 
-            AsciiArtPrinter.Draw(titleArt, 20, 4, ConsoleColor.Green);
+            AsciiArtPrinter.Draw(titleArt, 24, 2, ConsoleColor.Green);
+
+            Console.SetCursorPosition(38, 15);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Recommended settings:");
+
+            Console.SetCursorPosition(33, 16);
+            Console.Write("Font: Consolas ♠ Size: 16 - 20");
+
+            Console.SetCursorPosition(40, 17);
+            Console.Write("Disable Word Wrap");
+
+            Console.SetCursorPosition(34, 28);
+            Console.Write("© 2017 Alexander Herrfurth");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(27, 20);
+
+            Console.Write($"Please enter your name (max {MAX_NAME_LENGTH} characters)");
+            Console.SetCursorPosition(36, 21);
+            Console.Write("and confirm to start:");
+            
+            Console.SetCursorPosition(40, 22);
+            Console.Write("┌------------┐");
+            Console.SetCursorPosition(40, 24);
+            Console.Write("└------------┘");
+
+            Console.SetCursorPosition(41, 23);
+
+            Console.CursorVisible = true;
+
+            _blackjack.Player.Name = NameEnter();
+
+            Console.CursorVisible = false;
+
         }
 
         #endregion

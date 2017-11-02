@@ -50,7 +50,7 @@
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Enum">
-        <Name>CardSuit</Name>
+        <Name>CardSuits</Name>
         <Access>Public</Access>
         <Location left="47" top="204" />
         <Size width="162" height="137" />
@@ -61,7 +61,7 @@
         <Value>Diamond</Value>
       </Entity>
       <Entity type="Enum">
-        <Name>RoyalType</Name>
+        <Name>RoyalTypes</Name>
         <Access>Public</Access>
         <Location left="266" top="596" />
         <Size width="162" height="137" />
@@ -128,7 +128,7 @@
         <Location left="1102" top="418" />
         <Size width="208" height="181" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">public const int MAX_BALANCE = 9999</Member>
+        <Member type="Field">public const int MAX_BALANCE = 999999</Member>
         <Member type="Property">public int CurrentBet { get; set; }</Member>
         <Member type="Property">public int Balance { get; set; }</Member>
         <Member type="Property">public string Name { get; set; }</Member>
@@ -191,8 +191,9 @@
         <Member type="Method">public void DrawHandCards(Hand hand, int posX, int posY)</Member>
         <Member type="Method">public string NameEnter()</Member>
         <Member type="Method">public void ForceSize(int width, int height)</Member>
-        <Member type="Method">public void ClearArea(int posX, int posY, int width, int height)</Member>
-        <Member type="Method">public void WriteNewLines(int count)</Member>
+        <Member type="Method">private void ClearArea(int posX, int posY, int width, int height)</Member>
+        <Member type="Method">private void WriteNewLines(int count)</Member>
+        <Member type="Method">private void ShowTitleScreen()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Enum">
