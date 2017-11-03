@@ -117,7 +117,7 @@
       <Entity type="Interface">
         <Name>IPlayer</Name>
         <Access>Public</Access>
-        <Location left="1160" top="675" />
+        <Location left="1150" top="682" />
         <Size width="162" height="95" />
         <Collapsed>False</Collapsed>
         <Member type="Property">Hand Hand { get; }</Member>
@@ -125,20 +125,24 @@
       <Entity type="Class">
         <Name>Player</Name>
         <Access>Public</Access>
-        <Location left="1102" top="418" />
-        <Size width="208" height="181" />
+        <Location left="1102" top="400" />
+        <Size width="208" height="230" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const int MAX_BALANCE = 999999</Member>
+        <Member type="Field">private Blackjack _blackjack</Member>
+        <Member type="Field">private int _currentBet</Member>
+        <Member type="Field">private int _balance</Member>
         <Member type="Property">public int CurrentBet { get; set; }</Member>
         <Member type="Property">public int Balance { get; set; }</Member>
         <Member type="Property">public string Name { get; set; }</Member>
         <Member type="Property">public Hand Hand { get; private set; }</Member>
+        <Member type="Constructor">public Player(Blackjack blackjack)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>Dealer</Name>
         <Access>Public</Access>
-        <Location left="1362" top="418" />
+        <Location left="1354" top="400" />
         <Size width="202" height="181" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const int STAND_VALUE = 17</Member>
@@ -303,15 +307,15 @@
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>1216</X>
-          <Y>627</Y>
+          <Y>658</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Realization" first="10" second="8">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="False">
-          <X>1352</X>
-          <Y>718</Y>
+          <X>1342</X>
+          <Y>725</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="12" second="11">
@@ -346,8 +350,8 @@
           <Y>356</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1399</X>
-          <Y>393</Y>
+          <X>1391</X>
+          <Y>375</Y>
         </BendPoint>
         <Direction>Bidirectional</Direction>
         <AssociationType>Composition</AssociationType>
