@@ -11,13 +11,17 @@ namespace BlackjackConsole {
         #region Constants
 
         public const string DEFAULT_PLAYER_NAME = "Player";
+        public const int MAX_BALANCE = 999999;
 
         #endregion
 
         #region Fields
 
+        private Blackjack _blackjack;
+
         private int _currentBet;
-        private string _name;
+        private int _balance;
+        private string _name = DEFAULT_PLAYER_NAME;
 
         #endregion
 
@@ -26,10 +30,19 @@ namespace BlackjackConsole {
         public int CurrentBet {
 
             get => _currentBet;
-            set => _currentBet = MathUtility.Clamp(value, 0, Balance);
+            // TUTORIAL NOTE: Maybe split this into multiple statements and use a regular body for the setter for clarification
+            set => _currentBet = MathUtility.Clamp(value, _blackjack.MinBet, Math.Min(_blackjack.MaxBet, _balance)); 
 
         }
-        public int Balance { get; set; }
+        public int Balance {
+
+            get => _balance;
+            set {
+                _balance = MathUtility.Clamp(value, 0, MAX_BALANCE);
+                _currentBet = MathUtility.Clamp(_currentBet, _blackjack.MinBet, Math.Min(_blackjack.MaxBet, _balance));
+            }
+
+        }
 
         public string Name {
             get => _name;
@@ -44,13 +57,17 @@ namespace BlackjackConsole {
 
         #endregion
 
-        #region Constructor
+        #region Constructors
+
+        public Player(Blackjack blackjack) {
+
+            _blackjack = blackjack;
+
+        }
 
         #endregion
 
         #region Methods
-
-
 
         #endregion
 

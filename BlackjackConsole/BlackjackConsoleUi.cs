@@ -22,7 +22,7 @@ namespace BlackjackConsole {
         public const int WINDOW_HEIGHT = 30;
 
         private const int START_BALANCE = 500;
-        private const int MIN_BET = 1;
+        private const int MIN_BET = 10;
         private const int MAX_BET = 500;
 
         #endregion

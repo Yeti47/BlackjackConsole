@@ -64,7 +64,7 @@ namespace BlackjackConsole {
 
         public Blackjack() {
 
-            Player = new Player();
+            Player = new Player(this);
             Dealer = new Dealer(this);
             GameState = GameStates.Initial;
 
@@ -82,7 +82,7 @@ namespace BlackjackConsole {
             Deck.Shuffle();
 
             Player.Hand.DiscardAll();
-            Player.CurrentBet = 0;
+            Player.CurrentBet = MinBet;
             Player.Balance = initialBalance;
 
             Dealer.Hand.DiscardAll();
@@ -237,7 +237,6 @@ namespace BlackjackConsole {
 
             Dealer.Hand.Show();
             Player.Balance -= Player.CurrentBet;
-            Player.CurrentBet = MathUtility.Clamp(Player.CurrentBet, 0, Player.Balance); // TODO: maybe put this in setter of Player.Balance
 
             GameState = GameStates.Ended;
 
