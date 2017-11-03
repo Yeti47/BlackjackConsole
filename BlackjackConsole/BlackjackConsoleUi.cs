@@ -253,7 +253,7 @@ namespace BlackjackConsole {
             Console.WriteLine(discardLabel.PadRight(20));
 
             ConsoleUtility.WriteNewLines(3); // 
-            string playerValueMessage = _blackjack.Player.Name + ": " + _blackjack.Player.Hand.Value + (_blackjack.Player.Hand.IsBlackjack ? " BLACKJACK " : "");
+            string playerValueMessage = _blackjack.Player.Name + ": " + _blackjack.Player.Hand.Value + (_blackjack.Player.Hand.IsBlackjack ? " BLACKJACK" : "");
             Console.WriteLine(playerValueMessage.PadRight(27));
             ConsoleUtility.WriteNewLines(3);
 
