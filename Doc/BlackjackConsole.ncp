@@ -7,7 +7,7 @@
       <Entity type="Class">
         <Name>Card</Name>
         <Access>Public</Access>
-        <Location left="287" top="227" />
+        <Location left="318" top="227" />
         <Size width="207" height="238" />
         <Collapsed>False</Collapsed>
         <Member type="Property">public abstract int Value { get; }</Member>
@@ -91,7 +91,7 @@
       <Entity type="Interface">
         <Name>IAsciiArt</Name>
         <Access>Public</Access>
-        <Location left="535" top="27" />
+        <Location left="555" top="31" />
         <Size width="181" height="107" />
         <Collapsed>False</Collapsed>
         <Member type="Method">string ToAsciiArt()</Member>
@@ -168,7 +168,7 @@
         <Member type="Property">public int MinBet { get; set; }</Member>
         <Member type="Property">public int MaxBet { get; set; }</Member>
         <Member type="Property">public GameStates GameState { get; private set; }</Member>
-        <Member type="Method">public void StartGame(double initialBalance)</Member>
+        <Member type="Method">public void StartGame(int initialBalance)</Member>
         <Member type="Method">public void Hit()</Member>
         <Member type="Method">public void Double()</Member>
         <Member type="Method">public void Stand()</Member>
@@ -187,7 +187,7 @@
         <Member type="Field">public const int WINDOW_WIDTH = 100</Member>
         <Member type="Field">public const int WINDOW_HEIGHT = 30</Member>
         <Member type="Field">private const int START_BALANCE = 500</Member>
-        <Member type="Field">private const int MIN_BET = 1</Member>
+        <Member type="Field">private const int MIN_BET = 10</Member>
         <Member type="Field">private const int MAX_BET = 500</Member>
         <Member type="Field">private Blackjack _blackjack</Member>
         <Member type="Method">public void Run()</Member>
@@ -213,10 +213,10 @@
         <Name>ConsoleUtility</Name>
         <Access>Public</Access>
         <Location left="19" top="16" />
-        <Size width="422" height="174" />
+        <Size width="447" height="174" />
         <Collapsed>False</Collapsed>
-        <Member type="Method">public static void Draw(IAsciiArt asciiArt, int posX, int posY, ConsoleColor color)</Member>
-        <Member type="Method">public static void Draw(string asciiArt, int posX, int posY, ConsoleColor color)</Member>
+        <Member type="Method">public static void DrawAsciiArt(IAsciiArt asciiArt, int posX, int posY, ConsoleColor color)</Member>
+        <Member type="Method">public static void DrawAsciiArt(string asciiArt, int posX, int posY, ConsoleColor color)</Member>
         <Member type="Method">public static void ForceSize(int width, int height)</Member>
         <Member type="Method">public static void ClearArea(int posX, int posY, int width, int height)</Member>
         <Member type="Method">public static void WriteNewLines(int count)</Member>
@@ -238,7 +238,7 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>260</X>
+          <X>291</X>
           <Y>284</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
@@ -250,7 +250,7 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="False">
-          <X>530</X>
+          <X>561</X>
           <Y>298</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
@@ -274,7 +274,7 @@
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>475</X>
+          <X>506</X>
           <Y>202</Y>
         </BendPoint>
       </Relationship>
@@ -294,7 +294,7 @@
           <Y>513</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>537</X>
+          <X>568</X>
           <Y>396</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
@@ -376,7 +376,7 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>466</X>
+          <X>491</X>
           <Y>52</Y>
         </BendPoint>
       </Relationship>
