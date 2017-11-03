@@ -236,7 +236,7 @@ namespace BlackjackConsole {
         private void HandleLost() {
 
             Dealer.Hand.Show();
-            Player.Balance -= Player.CurrentBet;
+            Player.Balance -= Player.CurrentBet * (Player.HasDoubled ? 2 : 1);
 
             GameState = GameStates.Ended;
 

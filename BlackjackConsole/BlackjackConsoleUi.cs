@@ -241,7 +241,8 @@ namespace BlackjackConsole {
 
             Console.SetCursorPosition(0, 0);
 
-            Console.WriteLine("Dealer: " + _blackjack.Dealer.Hand.GetVisibleValue(1) + "     ");
+            string dealerValueMessage = "Dealer: " + _blackjack.Dealer.Hand.GetVisibleValue(1) + (_blackjack.Dealer.Hand.IsBlackjack ? " BLACKJACK" : "");
+            Console.WriteLine(dealerValueMessage.PadRight(22));
 
             ConsoleUtility.DrawAsciiArt(_blackjack.Deck, 0, 3, Console.ForegroundColor);
             string deckLabel = "•Deck: " + _blackjack.Deck.NumberRemainingCards;
@@ -252,7 +253,8 @@ namespace BlackjackConsole {
             Console.WriteLine(discardLabel.PadRight(20));
 
             ConsoleUtility.WriteNewLines(3); // 
-            Console.WriteLine(_blackjack.Player.Name + ": " + _blackjack.Player.Hand.Value + "     ");
+            string playerValueMessage = _blackjack.Player.Name + ": " + _blackjack.Player.Hand.Value + (_blackjack.Player.Hand.IsBlackjack ? " BLACKJACK " : "");
+            Console.WriteLine(playerValueMessage.PadRight(27));
             ConsoleUtility.WriteNewLines(3);
 
             string balanceLabel = "Balance: $" + _blackjack.Player.Balance;
