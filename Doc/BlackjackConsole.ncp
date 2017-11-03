@@ -138,7 +138,7 @@
       <Entity type="Class">
         <Name>Dealer</Name>
         <Access>Public</Access>
-        <Location left="1374" top="466" />
+        <Location left="1362" top="418" />
         <Size width="202" height="181" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const int STAND_VALUE = 17</Member>
@@ -174,7 +174,7 @@
         <Name>BlackjackConsoleUi</Name>
         <Access>Public</Access>
         <Location left="1489" top="16" />
-        <Size width="353" height="383" />
+        <Size width="353" height="345" />
         <Collapsed>False</Collapsed>
         <Member type="Field">public const string GAME_TITLE = "Poor Man's Blackjack"</Member>
         <Member type="Field">private const int BET_STEP = 10</Member>
@@ -346,8 +346,8 @@
           <Y>356</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1411</X>
-          <Y>441</Y>
+          <X>1399</X>
+          <Y>393</Y>
         </BendPoint>
         <Direction>Bidirectional</Direction>
         <AssociationType>Composition</AssociationType>
