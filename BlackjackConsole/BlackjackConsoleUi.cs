@@ -12,6 +12,7 @@ namespace BlackjackConsole {
         #region Constants
 
         public const string GAME_TITLE = "Poor Man's Blackjack";
+        public const string AUTHOR = "Alexander Herrfurth";
 
         private const int BET_STEP = 10;
         private const int BET_STEP_SMALL = 1;
@@ -41,7 +42,7 @@ namespace BlackjackConsole {
         public BlackjackConsoleUi() {
 
             Console.OutputEncoding = Encoding.Unicode;
-            Console.Title = GAME_TITLE;
+            Console.Title = GAME_TITLE + " by " + AUTHOR;
 
             _blackjack = new Blackjack(MIN_BET, MAX_BET);
 
@@ -117,7 +118,6 @@ namespace BlackjackConsole {
                             _blackjack.StartGame(START_BALANCE);
                             DrawGui();
                         }
-                        
                         break;
 
                     case ConsoleKey.Spacebar:
@@ -173,7 +173,20 @@ namespace BlackjackConsole {
 
                 }
 
+                // Flush keyboard buffer | TUTORIAL NOTE: Demonstrate what happens without this!
+                FlushKeyboardBuffer();
+
             }
+
+        }
+
+        /// <summary>
+        /// Flushes the keyboard buffer by consuming every keystroke currently in the buffer.
+        /// </summary>
+        private void FlushKeyboardBuffer() {
+
+            while (Console.KeyAvailable)
+                Console.ReadKey(true);
 
         }
 
@@ -433,7 +446,7 @@ namespace BlackjackConsole {
             Console.Write("Disable Word Wrap");
 
             Console.SetCursorPosition(34, 28);
-            Console.Write("© 2017 Alexander Herrfurth");
+            Console.Write("© 2017 " + AUTHOR);
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(27, 20);
