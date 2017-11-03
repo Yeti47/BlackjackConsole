@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ace.cs" />
-    <Compile Include="AsciiArtPrinter.cs" />
+    <Compile Include="ConsoleUtility.cs" />
     <Compile Include="Blackjack.cs" />
     <Compile Include="BlackjackConsoleUi.cs" />
     <Compile Include="Card.cs" />

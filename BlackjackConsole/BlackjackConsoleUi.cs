@@ -60,7 +60,7 @@ namespace BlackjackConsole {
 
             Console.CursorVisible = false;
 
-            ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+            ConsoleUtility.ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
             ShowTitleScreen();
 
@@ -70,17 +70,18 @@ namespace BlackjackConsole {
 
             _blackjack.StartGame(START_BALANCE);
 
-            bool hasCanceled = false;
+            ConsoleUtility.ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-            ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
             DrawGui();
+
+            bool hasCanceled = false;
 
             while (!hasCanceled) {
 
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 ConsoleKey key = keyInfo.Key;
 
-                ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+                ConsoleUtility.ForceSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
                 switch (key) {
 
@@ -98,10 +99,10 @@ namespace BlackjackConsole {
                         else if(_blackjack.IsDealAllowed) {
 
                             // Clear dealer's win/lose/push message
-                            ClearArea(0, 1, 16, 2);
+                            ConsoleUtility.ClearArea(0, 1, 16, 2);
 
                             // Clear players's win/lose/push message
-                            ClearArea(0, 17, 16, 2);
+                            ConsoleUtility.ClearArea(0, 17, 16, 2);
 
                             _blackjack.Deal();
                             DrawGui();
@@ -110,10 +111,10 @@ namespace BlackjackConsole {
                         else if(_blackjack.IsGameOver) {
 
                             // Clear dealer's win/lose/push message
-                            ClearArea(0, 1, 16, 2);
+                            ConsoleUtility.ClearArea(0, 1, 16, 2);
 
                             // Clear players's win/lose/push message
-                            ClearArea(0, 17, 16, 2);
+                            ConsoleUtility.ClearArea(0, 17, 16, 2);
 
                             _blackjack.StartGame(START_BALANCE);
                             DrawGui();
@@ -174,19 +175,9 @@ namespace BlackjackConsole {
                 }
 
                 // Flush keyboard buffer | TUTORIAL NOTE: Demonstrate what happens without this!
-                FlushKeyboardBuffer();
+                ConsoleUtility.FlushKeyboardBuffer();
 
             }
-
-        }
-
-        /// <summary>
-        /// Flushes the keyboard buffer by consuming every keystroke currently in the buffer.
-        /// </summary>
-        private void FlushKeyboardBuffer() {
-
-            while (Console.KeyAvailable)
-                Console.ReadKey(true);
 
         }
 
@@ -241,34 +232,7 @@ namespace BlackjackConsole {
 
         }
 
-        private void ClearArea(int posX, int posY, int width, int height) {
-
-            Console.SetCursorPosition(posX, posY);
-
-            for(int i = 0; i < height; i++) {
-
-                for (int j = 0; j < width; j++)
-                    Console.Write(" ");
-
-                Console.CursorLeft = posX;
-                Console.CursorTop++;
-
-            }
-
-        }
-
-        private void ForceSize(int width, int height) {
-
-            Console.WindowWidth = MathUtility.Clamp(width, 1, Console.LargestWindowWidth);
-            Console.WindowHeight = MathUtility.Clamp(height, 1, Console.LargestWindowHeight);
-
-            if (Console.BufferWidth < width)
-                Console.BufferWidth = width;
-
-            if (Console.BufferHeight < height)
-                Console.BufferHeight = height;
-
-        }
+        
 
         private void DrawGui() {
 
@@ -279,24 +243,24 @@ namespace BlackjackConsole {
 
             Console.WriteLine("Dealer: " + _blackjack.Dealer.Hand.GetVisibleValue(1) + "     ");
 
-            AsciiArtPrinter.Draw(_blackjack.Deck, 0, 3, Console.ForegroundColor);
+            ConsoleUtility.DrawAsciiArt(_blackjack.Deck, 0, 3, Console.ForegroundColor);
             string deckLabel = "•Deck: " + _blackjack.Deck.NumberRemainingCards;
             Console.WriteLine(deckLabel.PadRight(11));
 
-            AsciiArtPrinter.Draw(_blackjack.DiscardPile, 12, 3, Console.ForegroundColor);
+            ConsoleUtility.DrawAsciiArt(_blackjack.DiscardPile, 12, 3, Console.ForegroundColor);
             string discardLabel = "•Discards: " + _blackjack.DiscardPile.NumberRemainingCards;
             Console.WriteLine(discardLabel.PadRight(20));
 
-            WriteNewLines(3); // TUTORIAL NOTE: Use individual WriteLine method calls first, then introduce WriteNewLine method
+            ConsoleUtility.WriteNewLines(3); // 
             Console.WriteLine(_blackjack.Player.Name + ": " + _blackjack.Player.Hand.Value + "     ");
-            WriteNewLines(3);
+            ConsoleUtility.WriteNewLines(3);
 
             string balanceLabel = "Balance: $" + _blackjack.Player.Balance;
             Console.WriteLine(balanceLabel.PadRight(16));
 
             string betLabel = "Bet: $" + _blackjack.Player.CurrentBet;
             Console.WriteLine(betLabel.PadRight(16));
-            WriteNewLines(3);
+            ConsoleUtility.WriteNewLines(3);
 
             ConsoleColor originalColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -356,10 +320,10 @@ namespace BlackjackConsole {
             Console.Write(optionLine.PadRight(WINDOW_WIDTH));
 
             // Clear dealer's hand area
-            ClearArea(27, 1, 70, 9);
+            ConsoleUtility.ClearArea(27, 1, 70, 9);
 
             // Clear players's hand area
-            ClearArea(27, 16, 70, 9);
+            ConsoleUtility.ClearArea(27, 16, 70, 9);
 
             DrawHandCards(_blackjack.Dealer.Hand, 27, 1);
             DrawHandCards(_blackjack.Player.Hand, 27, 16);
@@ -401,17 +365,10 @@ namespace BlackjackConsole {
 
             foreach(Card card in cards) {
 
-                AsciiArtPrinter.Draw(card, posX, posY, Console.ForegroundColor);
+                ConsoleUtility.DrawAsciiArt(card, posX, posY, Console.ForegroundColor);
                 posX += 7;
 
             }
-
-        }
-
-        private void WriteNewLines(int count) {
-
-            for (int i = 0; i < count; i++)
-                Console.WriteLine();
 
         }
 
@@ -433,7 +390,7 @@ namespace BlackjackConsole {
                 " |____/|_|\\__,_|\\___|_|\\_\\/ |\\__,_|\\___|_|\\_\\      \n" +
                 "                        |__/                       \n";
 
-            AsciiArtPrinter.Draw(titleArt, 24, 2, ConsoleColor.Green);
+            ConsoleUtility.DrawAsciiArt(titleArt, 24, 2, ConsoleColor.Green);
 
             Console.SetCursorPosition(38, 15);
             Console.ForegroundColor = ConsoleColor.Yellow;
